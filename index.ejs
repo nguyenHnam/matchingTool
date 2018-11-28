@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+    div.product {
+        vertical-align: top;
+        display: inline-block;
+        text-align: center;
+        width: 300px;
+    }
+    img {
+        width: 300px;
+        background-color: grey;
+    }
+    img:hover {
+        opacity: 0.7;
+    }
+    .selected {
+       box-shadow:0px 12px 22px 1px #333;
+    }
+    .caption {
+        display: block;
+    }
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+    .btn-inner {
+        display: inline-block;
+    }
+    </style>
+  <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="client.js"></script>
+</head>
+
+<body>
+    <div class='product tiki'>
+        <img title='<%= obj.name %>' src='<%= thumbnail %>' />
+        <span class='caption'> 
+            <a href='https://tiki.vn/p/<%= obj.id %>' target="_blank"> <%= obj.name %></a>
+        </span>
+    </div>
+    <div class='products fahasa'>
+  <ul>
+    <% for (var idx in data) { %>
+        <div class='product'>
+            <img src='images/<%= data[idx].image %>' onclick="javascript:saveToDB(<%= obj.id %>, '<%= data[idx].link %>', '<%= data[idx].image %>')" 
+                <% if (data[idx].selected) { %> class="selected" <% } %>
+                id="img_<%= idx %>"
+            
+            />
+                <span class='caption'> 
+                    <a href='<%= data[idx].link %>' target='_blank' >
+                        <%= data[idx].title %>
+                    </a>
+                </span>
+        </div>
+    <% }; %>
+  </ul>
+    </div>
+
+  <div class="btn">
+      <div class="btn-inner"><button type="Button" id='prev'> Prev </button></div>
+      <div class="btn-inner"><button type="Button" id='next'> Next </button></div>
+  </div>
+ </body>
+
+</html>
